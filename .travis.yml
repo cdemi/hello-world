@@ -6,4 +6,4 @@ services:
 
 script:
  - docker build -t cdemi/hello-world .
- - \[ "$(docker run --rm cdemi/hello-world)" == "Hello Wor2ld!" \]
+ - \[ "$(docker run --rm cdemi/hello-world)" == "Hello World!" \]
