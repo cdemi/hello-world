@@ -4,6 +4,9 @@ sudo: required
 services:
  - docker
 
-script:
- - docker build -t cdemi/hello-world .
- - \[ "$(docker run --rm cdemi/hello-world)" == "Hello World!" \]
+jobs:
+ include:
+  - stage: Build
+    script: docker build -t cdemi/hello-world .
+  - stage: Test
+    script: \[ "$(docker run --rm cdemi/hello-world)" == "Hello World!" \]
