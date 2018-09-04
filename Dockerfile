@@ -1,5 +1,9 @@
-FROM microsoft/dotnet:2-sdk
+FROM microsoft/dotnet:sdk AS build
 WORKDIR /app
 COPY ./src ./
 RUN dotnet restore && dotnet publish -c Release -o out
-ENTRYPOINT ["dotnet", "out/hello-world.dll"]
+
+FROM microsoft/dotnet:runtime AS runtime
+WORKDIR /app
+COPY --from=build /app/out .
+ENTRYPOINT ["dotnet", "hello-world.dll"]
