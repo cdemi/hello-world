@@ -1,0 +1,8 @@
+sudo: required
+
+services:
+ - docker
+
+script:
+ - docker build -t cdemi/hello-world .
+ - docker run --rm cdemi/hello-world
