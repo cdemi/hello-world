@@ -5,5 +5,5 @@ services:
  - docker
 
 script:
- - docker build -t cdemi/hello-world .
- - \[ "$(docker run --rm cdemi/hello-world)" == "Hello World!" \]
+ - docker build -t cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH .
+ - \[ "$(docker run --rm cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH)" == "Hello World!" \]
