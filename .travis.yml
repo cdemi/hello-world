@@ -1,3 +1,4 @@
+language: bash
 sudo: required
 
 services:
@@ -5,4 +6,4 @@ services:
 
 script:
  - docker build -t cdemi/hello-world .
- - docker run --rm cdemi/hello-world
+ - [ "$(docker run --rm cdemi/hello-world)" == "Hello World!" ]
