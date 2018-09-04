@@ -1,13 +1,10 @@
 language: bash
 sudo: required
-os:
- - linux
- - osx
 services:
  - docker
 
 script:
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
- - docker build -t cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH-$TRAVIS_OS_NAME .
- - \[ "$(docker run --rm cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH-$TRAVIS_OS_NAME)" == "Hello World!" \]
- - docker push cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH-$TRAVIS_OS_NAME
+ - docker build -t cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH .
+ - \[ "$(docker run --rm cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH)" == "Hello World!" \]
+ - docker push cdemi/hello-world:$TRAVIS_BUILD_NUMBER-$TRAVIS_BRANCH
