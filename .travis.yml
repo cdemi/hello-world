@@ -1,6 +1,8 @@
 language: bash
 sudo: required
-
+os:
+ - linux
+ - windows
 services:
  - docker
 
