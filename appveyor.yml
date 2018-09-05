@@ -7,6 +7,6 @@ services:
 
 build_script:
 - pwsh: docker login -u "$ENV:DOCKER_USERNAME" -p "$ENV:DOCKER_PASSWORD"
-- pwsh: docker build -t cdemi/hello-world:$ENV:APPVEYOR_BUILD_VERSION-$ENV:APPVEYOR_BUILD_WORKER_IMAGE.Replace(" ","_") .
-- pwsh: docker run --rm cdemi/hello-world:$ENV:APPVEYOR_BUILD_VERSION-$ENV:APPVEYOR_BUILD_WORKER_IMAGE.Replace(" ","_")
-- pwsh: docker push cdemi/hello-world:$ENV:APPVEYOR_BUILD_VERSION-$ENV:APPVEYOR_BUILD_WORKER_IMAGE.Replace(" ","_")
+- pwsh: docker build -t cdemi/hello-world:$ENV:APPVEYOR_BUILD_VERSION-($ENV:APPVEYOR_BUILD_WORKER_IMAGE).Replace(" ","_") .
+- pwsh: docker run --rm cdemi/hello-world:$ENV:APPVEYOR_BUILD_VERSION-($ENV:APPVEYOR_BUILD_WORKER_IMAGE).Replace(" ","_")
+- pwsh: docker push cdemi/hello-world:$ENV:APPVEYOR_BUILD_VERSION-($ENV:APPVEYOR_BUILD_WORKER_IMAGE).Replace(" ","_")
