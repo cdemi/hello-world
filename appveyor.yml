@@ -9,13 +9,12 @@ build_script:
 - pwsh: |
     $ENV:DOCKER_TAG="$ENV:APPVEYOR_BUILD_VERSION"
     if ($isLinux) {
+      Write-Host "Working on Linux"
       $ENV:DOCKER_TAG="$ENV:DOCKER_TAG-linux"
     } else {
+      Write-Host "Working on Windows"
       $ENV:DOCKER_TAG="$ENV:DOCKER_TAG-windows"
     }
-- pwsh: 'Write-Host "Test: $isLinux"'
-- pwsh: 'Write-Host "Test: $isWindows"'
-- pwsh: Get-Variable | Out-String
 - pwsh: 'Write-Host "Building Tag: $ENV:DOCKER_TAG"'
 - pwsh: docker login -u "$ENV:DOCKER_USERNAME" -p "$ENV:DOCKER_PASSWORD"
 - pwsh: docker build -t cdemi/hello-world:$ENV:DOCKER_TAG .
