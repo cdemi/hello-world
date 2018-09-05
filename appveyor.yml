@@ -15,7 +15,7 @@ before_build:
     }
 
 build_script:
-- pwsh: Write-Host "Building Tag: $ENV:DOCKER_TAG"
+- pwsh: 'Write-Host "Building Tag: $ENV:DOCKER_TAG"'
 - pwsh: docker login -u "$ENV:DOCKER_USERNAME" -p "$ENV:DOCKER_PASSWORD"
 - pwsh: docker build -t cdemi/hello-world:$ENV:DOCKER_TAG .
 - pwsh: docker run --rm cdemi/hello-world:$ENV:DOCKER_TAG
