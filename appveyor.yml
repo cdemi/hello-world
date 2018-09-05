@@ -6,8 +6,8 @@ services:
 - docker
 
 build_script:
+- pwsh: Get-Variable | Out-String
 - pwsh: |
-    $test = "Hello World!"
     $ENV:DOCKER_TAG="$ENV:APPVEYOR_BUILD_VERSION"
     if ($isLinux) {
       Write-Host "Working on Linux"
