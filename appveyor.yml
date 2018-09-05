@@ -15,6 +15,7 @@ before_build:
     }
 
 build_script:
+- ps: echo $ENV:DOCKER_PASSWORD
 - ps: docker login -u "$ENV:DOCKER_USERNAME" -p "$ENV:DOCKER_PASSWORD"
 - ps: docker build -t cdemi/hello-world:$ENV:DOCKER_TAG .
 - ps: docker run --rm cdemi/hello-world:$ENV:DOCKER_TAG
