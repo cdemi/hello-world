@@ -6,6 +6,6 @@ services:
 - docker
 
 build_script:
-- sh: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-- sh: docker build -t cdemi/hello-world .
-- sh: docker run --rm cdemi/hello-world
+- ps: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- ps: docker build -t cdemi/hello-world .
+- ps: docker run --rm cdemi/hello-world
