@@ -5,7 +5,17 @@ image:
 services:
 - docker
 
+before_build:
+- ps: |
+    $env:DOCKER_TAG="$ENV:APPVEYOR_BUILD_VERSION"
+    if ($isLinux) {
+      $env:DOCKER_TAG="$env:DOCKER_TAG-linux"
+    } else {
+      $env:DOCKER_TAG="$env:DOCKER_TAG-windows"
+    }
+
 build_script:
-- ps: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-- ps: docker build -t cdemi/hello-world .
-- ps: docker run --rm cdemi/hello-world
+- ps: docker login -u "$ENV:DOCKER_USERNAME" -p "$ENV:DOCKER_PASSWORD"
+- ps: docker build -t cdemi/hello-world:$ENV:DOCKER_TAG .
+- ps: docker run --rm cdemi/hello-world:$ENV:DOCKER_TAG
+- ps: docker push cdemi/hello-world:$ENV:DOCKER_TAG
