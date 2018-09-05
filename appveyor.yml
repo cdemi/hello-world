@@ -1,0 +1,10 @@
+image:
+- Visual Studio 2017
+- Ubuntu
+
+services:
+- docker
+
+build_script:
+- docker build -t cdemi/hello-world .
+- docker run --rm cdemi/hello-world
